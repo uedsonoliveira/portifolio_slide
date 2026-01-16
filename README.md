@@ -12,7 +12,7 @@
 <br>
 
 <div align="center">
-  <img src="./assets/preview-screenshot.png" alt="Preview do Portfólio" width="100%">
+  <img src="./assets/screenshot.png" alt="Preview do Portfólio" width="100%">
   </div>
 
 <br>
