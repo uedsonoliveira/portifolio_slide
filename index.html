@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uedson de Oliveira | Web Developer & Data Analytics</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header id="main-header">
+    <div class="logo">UO<span>.</span></div>
+    <div id="preloader">
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <div class="loading-text">UO<span>.</span></div>
+      </div>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#" class="nav-btn active" data-target="home">Início</a></li>
+        <li><a href="#" class="nav-btn" data-target="about">Sobre</a></li>
+        <li><a href="#" class="nav-btn" data-target="skills">Habilidades</a></li>
+        <li><a href="#" class="nav-btn" data-target="process">Processo</a></li>
+        <li><a href="#" class="nav-btn" data-target="projects">Projetos</a></li>
+        <li><a href="#" class="nav-btn" data-target="testimonials">Depoimentos</a></li>
+        <li><a href="#" class="nav-btn" data-target="contact">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-controls">
+      <button id="theme-toggle" aria-label="Alternar Tema">
+        <i class="bi bi-moon-stars-fill"></i>
+      </button>
+      <button id="mobile-menu-btn" aria-label="Menu Mobile">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section active">
+      <div class="hero-slider">
+        <div class="slide active"
+          style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1920&auto=format&fit=crop');">
+        </div>
+        <div class="slide"
+          style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1920&auto=format&fit=crop');">
+        </div>
+        <div class="slide"
+          style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1920&auto=format&fit=crop');">
+        </div>
+      </div>
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1 class="fade-in-up">Uedson de Oliveira</h1>
+        <h2 class="fade-in-up delay-1">
+          Sou <span class="txt-type" data-wait="2000"
+            data-words='["Web Developer", "Data Analyst", "Full Stack Developer"]'></span>
+        </h2>
+        <div class="cta-group fade-in-up delay-2">
+          <a href="#" class="btn-primary nav-btn" data-target="contact">Entre em contato</a>
+          <div class="social-hero">
+            <a href="#"><i class="bi bi-github"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container split-layout">
+        <div class="about-img">
+          <img src="/assets/about.png" alt="Uedson de Oliveira" class="desktop-img">
+        </div>
+        <div class="about-text">
+          <h2 class="section-title">Sobre Mim</h2>
+          <p><i class="bi bi-person-check"></i> Sou um desenvolvedor
+            apaixonado por criar soluções digitais que não
+            apenas funcionem bem, mas que também
+            proporcionem uma experiência agradável e intuitiva para o
+            usuário. Focado em criar experiências digitais
+            claras, responsivas e acessíveis, com atenção a detalhes e boas
+            práticas. Com experiência em tecnologias
+            modernas, busco constantemente aprender e aplicar as melhores
+            práticas em cada projeto.</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <i class="bi bi-mortarboard-fill"></i>
+              <div>
+                <h4>2021</h4>
+                <p><strong>Análise e Desenvolvimento de Sistemas</strong> - Faculdade Unopar</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <i class="bi bi-mortarboard-fill"></i>
+              <div>
+                <h4>2022</h4>
+                <p><strong>Especialização em Web Developer Avançado</strong> - IFES - ES</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <i class="bi bi-mortarboard-fill"></i>
+              <div>
+                <h4>2023</h4>
+                <p><strong>Front-end Developer</strong> - Escola de Programação - DEVMEDIA</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <i class="bi bi-mortarboard-fill"></i>
+              <div>
+                <h4>2024</h4>
+                <p><strong>Data Analytics</strong> - Oficina Phyton</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <i class="bi bi-mortarboard-fill"></i>
+              <div>
+                <h4>2025</h4>
+                <p><strong>Back-end Developer</strong> - Plataforma Digital
+                  Innovation One - DIO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+        <div class="skills-grid">
+          <div class="skill-card"><i class="bi bi-filetype-html"></i><span>HTML5</span></div>
+          <div class="skill-card"><i class="bi bi-filetype-css"></i><span>CSS3</span></div>
+          <div class="skill-card"><i class="bi bi-filetype-js"></i><span>JavaScript</span></div>
+          <div class="skill-card"><i class="bi bi-filetype-json"></i><span>Node.js</span></div>
+          <div class="skill-card"><i class="bi bi-filetype-py"></i><span>Python</span></div>
+          <div class="skill-card"><i class="bi bi-database"></i><span>MySQL</span></div>
+          <div class="skill-card"><i class="bi bi-database-fill"></i><span>MongoDB</span></div>
+          <div class="skill-card"><i class="bi bi-database-check"></i><span>PostgreSQL</span></div>
+          <div class="skill-card"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></div>
+          <div class="skill-card"><i class="bi bi-bar-chart-fill"></i><span>Power BI</span></div>
+          <div class="skill-card"><i class="bi bi-robot"></i><span>N8N</span></div>
+          <div class="skill-card"><i class="bi bi-git"></i><span>Git/GitHub</span></div>
+          <div class="skill-card"><i class="bi bi-universal-access"></i><span>Acessibilidade</span></div>
+          <div class="skill-card"><i class="bi bi-phone"></i><span>Responsividade</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <div class="container center-content">
+        <h2 class="section-title">Como eu trabalho</h2>
+        <div class="process-wrapper">
+
+          <div class="process-step fade-in-up">
+            <div class="step-icon">
+              <i class="bi bi-search"></i>
+              <span class="step-number">01</span>
+            </div>
+            <h3>Descoberta</h3>
+            <p>Entendimento profundo das necessidades do negócio e do usuário final.</p>
+          </div>
+
+          <div class="step-line"></div>
+
+          <div class="process-step fade-in-up delay-1">
+            <div class="step-icon">
+              <i class="bi bi-pencil-square"></i>
+              <span class="step-number">02</span>
+            </div>
+            <h3>Design & UX</h3>
+            <p>Prototipação de interfaces focadas na melhor experiência de uso.</p>
+          </div>
+
+          <div class="step-line"></div>
+
+          <div class="process-step fade-in-up delay-2">
+            <div class="step-icon">
+              <i class="bi bi-code-slash"></i>
+              <span class="step-number">03</span>
+            </div>
+            <h3>Desenvolvimento</h3>
+            <p>Código limpo, escalável e performático (Clean Code).</p>
+          </div>
+
+          <div class="step-line"></div>
+
+          <div class="process-step fade-in-up delay-3">
+            <div class="step-icon">
+              <i class="bi bi-rocket-takeoff"></i>
+              <span class="step-number">04</span>
+            </div>
+            <h3>Entrega</h3>
+            <p>Deploy automatizado, testes finais e suporte contínuo.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title">Projetos em Destaque</h2>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="data">Data & BI</button>
+            <button class="filter-btn" data-filter="auto">Automação</button>
+        </div>
+
+        <div class="projects-grid">
+            
+            <div class="project-card" data-category="web">
+                <div class="project-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=crop" alt="Dashboard">
+                    <div class="img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span>HTML</span><span>CSS</span><span>JS</span>
+                    </div>
+                    <h3>E-commerce Moderno</h3>
+                    <p>Interface responsiva com carrinho de compras, checkout e integração com API de pagamentos.</p>
+                    <div class="project-btns">
+                        <a href="#" class="btn-sm"><i class="bi bi-eye"></i> Demo</a>
+                        <a href="#" class="btn-sm outline"><i class="bi bi-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="data">
+                <div class="project-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=crop" alt="Power BI">
+                    <div class="img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span>Power BI</span><span>SQL</span><span>ETL</span>
+                    </div>
+                    <h3>Sales Analytics Dashboard</h3>
+                    <p>Dashboard interativo para análise de KPIs de vendas, churn rate e projeção de faturamento mensal.</p>
+                    <div class="project-btns">
+                        <a href="#" class="btn-sm"><i class="bi bi-eye"></i> Case</a>
+                        <a href="#" class="btn-sm outline"><i class="bi bi-database"></i> Dados</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="auto">
+                <div class="project-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=500&auto=format&fit=crop" alt="Automação">
+                    <div class="img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span>Python</span><span>N8N</span><span>API</span>
+                    </div>
+                    <h3>Bot de Atendimento WhatsApp</h3>
+                    <p>Automação de triagem de clientes via WhatsApp API, reduzindo em 70% o tempo de resposta manual.</p>
+                    <div class="project-btns">
+                        <a href="#" class="btn-sm"><i class="bi bi-play-circle"></i> Demo</a>
+                        <a href="#" class="btn-sm outline"><i class="bi bi-github"></i> Repo</a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="project-card" data-category="web">
+                <div class="project-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=500&auto=format&fit=crop" alt="Landing Page">
+                    <div class="img-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <div class="tech-stack">
+                        <span>React</span><span>Sass</span>
+                    </div>
+                    <h3>Landing Page SaaS</h3>
+                    <p>Página de alta conversão otimizada para SEO e performance (Core Web Vitals).</p>
+                    <div class="project-btns">
+                        <a href="#" class="btn-sm"><i class="bi bi-eye"></i> Demo</a>
+                        <a href="#" class="btn-sm outline"><i class="bi bi-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section id="testimonials" class="section">
+    <div class="container center-content">
+        <h2 class="section-title">O que dizem</h2>
+        
+        <div class="testimonial-wrapper">
+            
+            <div class="testimonial-slider">
+                
+                <div class="testimonial-item active">
+                    <div class="quote-icon"><i class="bi bi-quote"></i></div>
+                    <p class="quote-text">"O Uedson transformou completamente a nossa presença digital. O site ficou rápido, lindo e muito funcional. A atenção aos detalhes foi impressionante."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">TC</div> <div class="client-details">
+                            <h4>Cliente A</h4>
+                            <span>CEO da TechCorp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="quote-icon"><i class="bi bi-quote"></i></div>
+                    <p class="quote-text">"Excelente profissional! A entrega foi pontual e a qualidade do código superou as expectativas. Com certeza faremos novos projetos juntos."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">MK</div>
+                        <div class="client-details">
+                            <h4>Cliente B</h4>
+                            <span>Gerente de Marketing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="quote-icon"><i class="bi bi-quote"></i></div>
+                    <p class="quote-text">"Habilidade incrível de resolver problemas complexos com soluções simples e elegantes. O sistema de automação poupou horas da nossa equipe."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">ST</div>
+                        <div class="client-details">
+                            <h4>Cliente C</h4>
+                            <span>Founder Startup</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="slider-controls">
+                <button id="prev-testim" aria-label="Anterior"><i class="bi bi-arrow-left"></i></button>
+                <button id="next-testim" aria-label="Próximo"><i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="section footer-section">
+      <div class="container footer-content">
+
+        <div class="contact-row">
+
+          <div class="footer-info left-col">
+            <h2>Vamos trabalhar juntos?</h2>
+
+            <div class="contact-details">
+              <div class="contact-item">
+                <i class="bi bi-person-fill"></i>
+                <span>Uedson de Oliveira</span>
+              </div>
+              <div class="contact-item">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span>Brasil</span>
+              </div>
+              <div class="contact-item">
+                <i class="bi bi-envelope-fill"></i>
+                <span>contato@uedson.dev</span>
+              </div>
+              <div class="contact-item">
+                <i class="bi bi-telephone-fill"></i>
+                <span>(27) 99999-9999</span>
+              </div>
+            </div>
+
+            <div class="social-footer">
+              <a href="#"><i class="bi bi-github"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper right-col">
+            <form id="contact-form" action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+
+              <div class="form-group">
+                <input type="text" name="name" id="name" required placeholder=" ">
+                <label for="name">Nome</label>
+              </div>
+
+              <div class="form-group">
+                <input type="email" name="email" id="email" required placeholder=" ">
+                <label for="email">E-mail</label>
+              </div>
+
+              <div class="form-group">
+                <input type="tel" name="phone" id="phone" required placeholder=" ">
+                <label for="phone">Telefone</label>
+              </div>
+
+              <div class="form-group">
+                <textarea name="message" id="message" required placeholder=" "></textarea>
+                <label for="message">Mensagem</label>
+              </div>
+
+              <button type="submit" class="btn-primary">
+                <span>Enviar Mensagem</span>
+                <i class="bi bi-send-fill"></i>
+              </button>
+
+              <p id="form-status" class="form-status"></p>
+            </form>
+          </div>
+
+        </div>
+        <div class="copy">
+          <p>&copy; <span id="year"></span> Uedson de Oliveira. Todos os direitos reservados.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <a href="https://wa.me/seunumero" target="_blank" class="float-wa">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-outline"></div>
+
+  <nav class="side-nav">
+    <ul>
+      <li><button data-target="home" class="dot active" aria-label="Ir para Início"></button></li>
+      <li><button data-target="about" class="dot" aria-label="Ir para Sobre"></button></li>
+      <li><button data-target="skills" class="dot" aria-label="Ir para Habilidades"></button></li>
+      <li><button data-target="process" class="dot" aria-label="Ir para Processo"></button></li>
+      <li><button data-target="projects" class="dot" aria-label="Ir para Projetos"></button></li>
+      <li><button data-target="testimonials" class="dot" aria-label="Ir para Depoimentos"></button></li>
+      <li><button data-target="contact" class="dot" aria-label="Ir para Contato"></button></li>
+    </ul>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
