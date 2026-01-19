@@ -1,4 +1,5 @@
 /* --- Variables & Reset --- */
+
 :root {
   --primary: #2563eb;
   --accent: #06b6d4;
@@ -35,7 +36,6 @@ body {
   background-color: var(--bg);
   color: var(--text);
   overflow: hidden;
-  /* No scrollbar */
   height: 100vh;
   transition: background-color 0.5s ease;
   cursor: none;
@@ -59,6 +59,7 @@ h4 {
 }
 
 /* --- Header --- */
+
 #main-header {
   position: fixed;
   top: 0;
@@ -142,7 +143,8 @@ button:hover {
   display: none;
 }
 
-/* --- Section Structure (Slides) --- */
+/* --- Section Estutura dos Slides --- */
+
 main {
   position: relative;
   width: 100%;
@@ -191,6 +193,7 @@ main {
 }
 
 /* --- 1. Home --- */
+
 #home {
   padding: 0;
   overflow: hidden;
@@ -276,7 +279,8 @@ main {
   font-size: 2rem;
 }
 
-/* Animations */
+/* Animacoes Letras do Home */
+
 .fade-in-up {
   opacity: 0;
   transform: translateY(30px);
@@ -298,7 +302,8 @@ main {
   }
 }
 
-/* --- 2. About --- */
+/* --- 2. Secao Sobre --- */
+
 .split-layout {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -311,7 +316,29 @@ main {
   height: 400px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: var(--shadow);
+  animation: morphShape 6s ease-in-out infinite;
+  border: 2px solid rgba(var(--primary-rgb), 0.3);
+  transition: transform 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.about-img img:hover {
+  transform: scale(1.05);
+}
+
+/* --- Animação: Borda Líquida (Morphing) */
+@keyframes morphShape {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
 }
 
 .timeline {
@@ -339,7 +366,7 @@ main {
   justify-content: center;
 }
 
-/* --- 3. Skills --- */
+/* --- 3. Secao Habilidades --- */
 
 .skills-grid {
   display: grid;
@@ -376,7 +403,6 @@ main {
   margin-bottom: 15px;
   line-height: 1;
   display: block;
-
   transform: translateZ(25px);
 }
 
@@ -385,21 +411,12 @@ main {
   font-weight: 600;
   color: var(--text);
   text-align: center;
-
-
   width: 100%;
   word-wrap: break-word;
-
   overflow-wrap: break-word;
-
   hyphens: auto;
-
   line-height: 1.2;
-
   margin: 0;
-
-
-
   transform: translateZ(25px);
 }
 
@@ -407,7 +424,7 @@ main {
   border-bottom: 3px solid var(--accent);
 }
 
-/* --- 3.5 Process Section --- */
+/* --- 4 Secao Processos --- */
 .process-wrapper {
   display: flex;
   justify-content: space-between;
@@ -426,7 +443,6 @@ main {
   padding: 0 10px;
   position: relative;
   z-index: 2;
-  /* Fica acima da linha */
 }
 
 .step-icon {
@@ -453,7 +469,6 @@ main {
   right: -5px;
   background: var(--accent);
   color: var(--bg);
-  /* Contraste com o fundo */
   font-weight: 700;
   font-size: 0.8rem;
   width: 25px;
@@ -488,7 +503,6 @@ main {
   height: 2px;
   background: linear-gradient(to right, var(--primary), var(--accent));
   margin-top: 40px;
-  /* Alinha com o meio dos ícones (80px / 2) */
   opacity: 0.3;
   transform: scaleX(0);
   transform-origin: left;
@@ -501,27 +515,34 @@ main {
   }
 }
 
-/* --- 4. Projects (Galeria Avançada) --- */
+/* --- 5 Secao Projetos --- */
 
-/* Filtros */
 .filter-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .filter-btn {
-  padding: 8px 20px;
-  border: 2px solid var(--text-light);
+  padding: 10px 25px;
+  border: 1px solid var(--text-light);
   background: transparent;
-  color: var(--text);
-  border-radius: 50px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: var(--text-light);
   font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
 }
 
 .filter-btn:hover,
@@ -533,12 +554,18 @@ main {
   box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.3);
 }
 
+/* Reduz opacidade dos não selecionados */
+.filter-container:hover .filter-btn:not(:hover):not(.active) {
+  opacity: 0.7;
+}
+
 /* Grid Layout */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   width: 100%;
+  padding-bottom: 4rem;
 }
 
 /* Card Design */
@@ -548,12 +575,9 @@ main {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform 0.3s, opacity 0.3s;
-  /* Transição para o filtro */
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(128, 128, 128, 0.1);
-
-  /* Para o filtro funcionar */
   opacity: 1;
   transform: scale(1);
 }
@@ -561,7 +585,6 @@ main {
 /* Classe oculta usada pelo JS */
 .project-card.hide {
   display: none;
-  /* Remove do fluxo */
 }
 
 /* Classe de animação de entrada */
@@ -600,7 +623,6 @@ main {
   transform: scale(1.1);
 }
 
-/* Conteúdo */
 .project-content {
   padding: 1.5rem;
   display: flex;
@@ -608,7 +630,6 @@ main {
   flex-grow: 1;
 }
 
-/* Tech Stack Badges */
 .tech-stack {
   display: flex;
   gap: 0.5rem;
@@ -619,15 +640,11 @@ main {
 .tech-stack span {
   font-size: 0.75rem;
   background: rgba(var(--primary-rgb), 0.1);
-  /* Cor primária bem clara (se não tiver a var RGB, use uma cor fixa tipo #e0f2fe) */
   color: var(--primary);
   padding: 4px 10px;
   border-radius: 4px;
   font-weight: 600;
 }
-
-/* Ajuste caso não tenha RGB configurado, use: */
-/* .tech-stack span { background: #eef2ff; color: var(--primary); } [se for tema claro] */
 
 .project-content h3 {
   font-size: 1.25rem;
@@ -641,14 +658,12 @@ main {
   line-height: 1.5;
   margin-bottom: 1.5rem;
   flex-grow: 1;
-  /* Empurra os botões para baixo */
 }
 
 .project-btns {
   display: flex;
   gap: 1rem;
   margin-top: auto;
-  /* Garante que fique no fundo */
 }
 
 .btn-sm {
@@ -681,22 +696,19 @@ main {
   color: var(--primary);
 }
 
-/* --- 5. Testimonials (Moderno) --- */
+/* --- 6. secao Depoimentos --- */
 
-/* Centralização Geral */
 .center-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
-  /* Garante altura total na section */
 }
 
 .testimonial-wrapper {
   width: 100%;
   max-width: 800px;
-  /* Limita a largura para leitura confortável */
   position: relative;
   padding: 0 20px;
 }
@@ -704,40 +716,30 @@ main {
 /* O TRUQUE DO GRID PARA SLIDES */
 .testimonial-slider {
   display: grid;
-  /* Define uma única área onde todos os itens vão se sobrepor */
   grid-template-areas: "stack";
   position: relative;
   min-height: 300px;
-  /* Altura mínima estética */
   align-items: center;
-  /* Centraliza verticalmente */
 }
 
 .testimonial-item {
   /* Coloca todos os itens na mesma célula do grid */
   grid-area: stack;
-
   /* Estilo do Cartão */
   background: var(--card-bg);
   padding: 3rem 2rem;
   border-radius: 20px;
   box-shadow: var(--shadow);
   text-align: center;
-
-  /* Animação e Visibilidade */
   opacity: 0;
   visibility: hidden;
   transform: scale(0.9) translateX(50px);
-  /* Começa menor e deslocado */
   transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  /* Curva suave */
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
   border: 1px solid rgba(128, 128, 128, 0.1);
-  /* Borda sutil */
 }
 
 /* Estado Ativo (Controlado pelo JS) */
@@ -746,7 +748,6 @@ main {
   visibility: visible;
   transform: scale(1) translateX(0);
   z-index: 1;
-  /* Traz para frente */
 }
 
 /* Ícone de Aspas Gigante */
@@ -755,7 +756,6 @@ main {
   color: var(--primary);
   opacity: 0.2;
   margin-bottom: -1rem;
-  /* Aproxima do texto */
 }
 
 /* Texto do Depoimento */
@@ -817,7 +817,6 @@ main {
 .slider-controls button {
   background: transparent;
   border: 2px solid var(--text-light);
-  /* Borda ao invés de fundo */
   color: var(--text-light);
   width: 50px;
   height: 50px;
@@ -838,10 +837,9 @@ main {
   box-shadow: 0 0 15px rgba(var(--primary), 0.4);
 }
 
-/* --- 6. Footer / Contact & Form --- */
+/* --- 7. Footer Secao Contato --- */
 .footer-section {
   background-color: var(--card-bg);
-  /* Garante que o footer tenha espaço para centralizar verticalmente se a tela for alta */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -851,8 +849,6 @@ main {
 .footer-content {
   display: flex;
   flex-direction: column;
-  /* Empilha: Colunas em cima, Copy embaixo */
-  justify-content: center;
   height: 100%;
   width: 100%;
 }
@@ -862,9 +858,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* Alinha verticalmente no centro */
   gap: 4rem;
-  /* Espaço entre as colunas */
   width: 100%;
   margin-bottom: 2rem;
 }
@@ -872,7 +866,6 @@ main {
 /* Coluna Esquerda: Informações (50%) */
 .footer-info.left-col {
   flex: 1;
-  /* Ocupa 50% do espaço disponível */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -925,7 +918,6 @@ main {
 /* Coluna Direita: Formulário (50%) */
 .contact-form-wrapper.right-col {
   flex: 1;
-  /* Ocupa 50% do espaço disponível */
   width: 100%;
 }
 
@@ -934,11 +926,9 @@ main {
   flex-direction: column;
   gap: 1.5rem;
   background: var(--bg);
-  /* Destaque sutil no fundo do form */
   padding: 2rem;
   border-radius: 15px;
   box-shadow: var(--shadow);
-  /* Sombra para destacar */
 }
 
 /* --- (Mantendo seus estilos de input originais que estavam ótimos) --- */
@@ -1025,12 +1015,10 @@ main {
   width: 100%;
   text-align: center;
   margin-top: auto;
-  /* Empurra para baixo se sobrar espaço */
   padding-top: 2rem;
   font-size: 0.9rem;
   opacity: 0.7;
   border-top: 1px solid rgba(128, 128, 128, 0.1);
-  /* Linha sutil separando */
 }
 
 /* =========================================
@@ -1109,11 +1097,9 @@ textarea:-webkit-autofill:focus {
 /* --- 1. Typewriter Effect --- */
 .txt-type>.txt {
   border-right: 0.1rem solid var(--accent);
-  /* Cursor piscando */
   padding-right: 3px;
   animation: blink 0.8s infinite;
   color: var(--accent);
-  /* Cor do texto digitado */
   font-weight: 600;
 }
 
@@ -1132,12 +1118,9 @@ textarea:-webkit-autofill:focus {
 /* --- 2. 3D Tilt Effect (Cards) --- */
 .skill-card,
 .project-card {
-  /* Removemos a transição padrão de transform para não conflitar com o JS */
   transition: box-shadow 0.3s, border-bottom 0.3s;
   transform-style: preserve-3d;
-  /* Habilita elementos filhos em 3D */
   will-change: transform;
-  /* Otimização de performance */
 }
 
 /* Faz os elementos internos "saltarem" para fora do card */
@@ -1148,7 +1131,6 @@ textarea:-webkit-autofill:focus {
 .project-btns {
   transform: translateZ(25px);
   display: inline-block;
-  /*Necessário para o translateZ funcionar em textos */
 }
 
 .project-img {
@@ -1165,7 +1147,6 @@ textarea:-webkit-autofill:focus {
   border-radius: 50%;
   z-index: 9999;
   pointer-events: none;
-  /* Permite clicar através do cursor */
 }
 
 #cursor-dot {
@@ -1179,9 +1160,7 @@ textarea:-webkit-autofill:focus {
   width: 40px;
   height: 40px;
   border: 2px solid rgba(var(--accent-rgb), 0.5);
-  /* Usando RGB para transparência (veja nota abaixo) */
   transition: all 0.1s ease-out;
-  /* Movimento mais suave e atrasado */
 }
 
 /* Estado de Hover do Cursor (quando passa sobre links/botões) */
@@ -1196,17 +1175,14 @@ textarea:-webkit-autofill:focus {
   height: 60px;
   border-color: var(--primary);
   background-color: rgba(37, 99, 235, 0.1);
-  /* Cor primária com transparência */
 }
 
 /* --- 4. Parallax Background (Home) --- */
 .hero-slider .slide {
-  /* Aumentamos a imagem para que ela possa se mover sem mostrar as bordas */
   width: 110%;
   height: 110%;
   top: -5%;
   left: -5%;
-  /* Substitui a transição de opacidade antiga para incluir o transform */
   transition: opacity 1.5s ease, transform 0.1s ease-out;
 }
 
@@ -1288,7 +1264,6 @@ textarea:-webkit-autofill:focus {
   background-color: transparent;
   border: 2px solid var(--text-light);
   cursor: none;
-  /* Mantém o nosso cursor customizado */
   transition: all 0.3s ease;
   padding: 0;
   opacity: 0.5;
@@ -1309,76 +1284,42 @@ textarea:-webkit-autofill:focus {
   box-shadow: 0 0 10px var(--primary);
 }
 
-/* --- Responsividade --- */
 
-/* Esconder dots no mobile para não poluir a tela */
-@media (max-width: 768px) {
-  .side-nav {
-    display: none;
-  }
-}
+/* =========================================
+           RESPONSIVIDADE (MOBILE)
+========================================= */
 
+/* =========================================
+RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 992px)
+========================================= */
 @media (max-width: 992px) {
-  .split-layout {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
 
-  .about-img img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-
-  .timeline {
-    border-left: none;
-    padding: 0;
-  }
-
-  .timeline-item i {
-    position: static;
-    display: inline-flex;
-    margin-bottom: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  #mobile-menu-btn {
-    display: block;
-    z-index: 1001;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    background: var(--card-bg);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: right 0.4s ease;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
+  /* --- GERAL --- */
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section {
+    height: 100vh;
+    overflow-y: auto !important;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Remove a centralização forçada que esconde o topo */
   .container {
     justify-content: flex-start;
-    padding-top: 2rem;
-    overflow-y: auto;
+    padding-bottom: 50px;
+    height: auto;
+    min-height: 100%;
   }
-}
 
-/* Responsividade para Processo */
-@media (max-width: 992px) {
   .process-wrapper {
     flex-direction: column;
     gap: 2rem;
@@ -1387,13 +1328,11 @@ textarea:-webkit-autofill:focus {
 
   .step-line {
     display: none;
-    /* Remove linha horizontal no mobile */
   }
 
   .process-step {
     width: 100%;
     flex-direction: row;
-    /* Ícone na esquerda, texto na direita */
     text-align: left;
     gap: 1.5rem;
     background: var(--card-bg);
@@ -1409,9 +1348,311 @@ textarea:-webkit-autofill:focus {
     font-size: 1.5rem;
     flex-shrink: 0;
   }
+
+  /* --- SOBRE MIM --- */
+  .split-layout {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .about-img img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .timeline {
+    border-left: none;
+    padding: 0;
+    margin-top: 2rem;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .timeline-item i {
+    position: static;
+    display: inline-flex;
+    margin-bottom: 10px;
+  }
+
+  /* --- PROCESSO --- */
+  .process-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .step-line {
+    display: none;
+  }
+
+  .process-step {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .step-icon {
+    margin-bottom: 0;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  /* --- CONTATO --- */
+  .contact-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-info.left-col,
+  .contact-form-wrapper.right-col {
+    width: 100%;
+    flex: none;
+  }
+
+  .contact-form-wrapper.right-col {
+    max-width: 600px;
+  }
+
+  .footer-info {
+    text-align: center;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+
+  .social-footer {
+    justify-content: center;
+  }
+
+  .footer-section {
+    background-color: var(--card-bg);
+  }
+
+  .footer-content {
+    justify-content: flex-start;
+    height: auto;
+    /* Permite crescer */
+  }
+
+  .contact-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    width: 100%;
+  }
+
+  .split-layout {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .about-img img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .timeline {
+    border-left: none;
+    padding: 0;
+    margin-top: 2rem;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .process-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .step-line {
+    display: none;
+  }
+
+  .process-step {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
 }
 
+@media (min-width: 993px) {
+
+  /* Força a seção de contato a centralizar o conteúdo no meio da tela */
+  #contact.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+  }
+
+  #contact .container {
+    justify-content: center !important;
+    padding-top: 0 !important;
+    height: 100%;
+  }
+
+  .contact-row {
+    height: 100%;
+  }
+}
+
+/* =========================================
+RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 768px)
+========================================= */
+
 @media (max-width: 768px) {
+
+  /* --- HEADER & MENU --- */
+
+  #home {
+    overflow-y: hidden !important;
+    justify-content: center !important;
+  }
+
+  #home .container {
+    justify-content: center !important;
+    padding-top: 0 !important;
+  }
+
+  #skills .container,
+  #process .container,
+  #contact .container {
+    padding-bottom: 100px !important;
+    display: block;
+  }
+
+  #skills,
+  #process,
+  #contact {
+    overflow-y: auto !important;
+    display: block !important;
+  }
+
+  .side-nav {
+    display: none;
+  }
+
+  #mobile-menu-btn {
+    display: block;
+    z-index: 1001;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s;
+  }
+
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+
+  .nav-links a {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  /* Botão Hambúrguer Visível */
+  #mobile-menu-btn {
+    display: block;
+    z-index: 1001;
+    /* Acima do menu */
+  }
+
+  /* --- 2. SECOES GERAIS --- */
+  .container {
+    padding: 6rem 1.5rem 2rem 1.5rem;
+    justify-content: flex-start;
+  }
+
+  .section {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    padding: 0 10px;
+    word-wrap: break-word;
+  }
+
+  /* --- 3. SECAO HOME --- */
+  .hero-content h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-content h2 {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  /* --- SOBRE --- */
+  .split-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .about-img img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .timeline {
+    text-align: left;
+    padding-left: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* --- PROCESSO --- */
   .process-step {
     flex-direction: column;
   }
@@ -1419,9 +1660,8 @@ textarea:-webkit-autofill:focus {
   .process-step p {
     text-align: center;
   }
-}
 
-@media (max-width: 768px) {
+  /* --- DEPOIMENTOS --- */
   .testimonial-item {
     padding: 2rem 1.5rem;
   }
@@ -1433,32 +1673,157 @@ textarea:-webkit-autofill:focus {
   .slider-controls {
     margin-top: 1.5rem;
   }
+
+  /* --- PROJETOS --- */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .filter-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+    width: 100%;
+    margin-left: 0;
+    padding: 0 10px 20px 10px;
+    gap: 10px;
+  }
+
+  .filter-btn {
+    flex: 1 1 auto;
+    height: auto;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 10px 15px;
+    white-space: normal;
+  }
+
+  /* --- CONTATO --- */
+  .contact-form-wrapper.right-col {
+    max-width: 100%;
+  }
+
+  /* Ajuste para o botão flutuante não tapar conteúdo */
+  .float-wa {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    bottom: 20px;
+    left: 20px;
+  }
 }
 
-@media (max-width: 992px) {
-  .contact-row {
-    flex-direction: column;
-    /* Empilha: Info em cima, Form embaixo */
-    gap: 3rem;
+/* =========================================
+RESPONSIVIDADE *A PARTIR DE* (MOBILE) @media (min-width: 769px)
+========================================= */
+
+/*section projetos*/
+
+@media (min-width: 769px) {
+  #projects .container {
+    justify-content: flex-start;
+    padding-top: 120px;
+    overflow-y: auto;
   }
 
-  .footer-info.left-col,
-  .contact-form-wrapper.right-col {
-    width: 100%;
-    /* Ocupam 100% no mobile/tablet */
-    flex: none;
+  #projects .projects-grid {
+    padding-bottom: 50px;
   }
 
-  .footer-info {
-    text-align: center;
-    align-items: center;
+}
+
+/* =========================================
+RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 380px)
+========================================= */
+
+@media (max-width: 380px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
   }
 
-  .contact-item {
-    justify-content: center;
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================================
+   📱 RESPONSIVIDADE AVANÇADA (MOBILE)
+   ========================================= */
+/* Ocultar Cursor Personalizado em dispositivos Touch */
+@media (hover: none) and (pointer: coarse) {
+
+  #cursor-dot,
+  #cursor-outline {
+    display: none;
   }
 
-  .social-footer {
-    justify-content: center;
+  body {
+    cursor: auto;
+  }
+
+  /* Volta o cursor nativo */
+  .btn-primary,
+  a,
+  button {
+    cursor: pointer;
+  }
+}
+
+/*2. TABLET (Entre 768px e 992px)
+   Correções: Home sem scroll, Habilidades mais largas, Depoimentos centralizados.*/
+@media (min-width: 768px) and (max-width: 992px) {
+
+  /* --- HOME: Tira a barra de rolagem --- */
+  #home {
+    overflow-y: hidden !important;
+    justify-content: center !important;
+   
+  }
+
+  /* --- HABILIDADES: Mais largura e espaço embaixo --- */
+  #skills .container {
+    max-width: 100% !important;
+    padding-bottom: 60px !important;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+  }
+
+  /* Caso esteja usando grid, reduzimos o gap se necessário ou aumentamos colunas */
+  #skills .skills-grid {
+    gap: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Seleciona os cards (filhos diretos do grid) */
+  #skills .skills-grid>div,
+  .skill-card {
+    flex: 1 1 220px !important;
+    max-width: 100%;
+  }
+
+  /* --- DEPOIMENTOS: Centralizar verticalmente --- */
+  #testimonials {
+    justify-content: center !important;
+  }
+
+  #testimonials .container {
+    justify-content: center !important;
+    padding-top: 0 !important;
+  }
+
+  /* --- COPY (Rodapé): Respiro embaixo --- */
+  .copy {
+    margin-bottom: 40px !important;
+    padding-bottom: 20px;
+  }
+
+  /* Garante que a seção Contato no Tablet tenha espaço para o Copy subir */
+  #contact .container {
+    padding-bottom: 80px !important;
   }
 }

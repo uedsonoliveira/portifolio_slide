@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fechar menu mobile se estiver aberto
     navList.classList.remove('active');
+    const mobileIcon = mobileBtn.querySelector('i');
+    if (mobileIcon) {
+      mobileIcon.classList.replace('bi-x-lg', 'bi-list');
+    }
+
+    updateDots(targetId);
   }
 
   navLinks.forEach(link => {
