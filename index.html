@@ -6,6 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uedson de Oliveira | Web Developer & Data Analytics</title>
 
+  <meta property="og:title" content="Uedson de Oliveira | Desenvolvedor Fullstack & Data">
+  <meta property="og:description" content="Confira meu portfólio com projetos de Web Development.">
+  <meta property="og:image" content="/assets/screenshots.png">
+
+  <meta property="og:url" content="https://SEU_USUARIO.github.io/portfolio/">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -19,8 +26,10 @@
 
 <body>
 
+  <div id="scroll-progress"></div>
+
   <header id="main-header">
-    <div class="logo">UO<span>.</span></div>
+    <div class="logo"><a href="#" class="nav-btn active" data-target="home">UO<span>.</span></a></div>
     <div id="preloader">
       <div class="loader-content">
         <div class="spinner"></div>
@@ -32,6 +41,7 @@
         <li><a href="#" class="nav-btn active" data-target="home">Início</a></li>
         <li><a href="#" class="nav-btn" data-target="about">Sobre</a></li>
         <li><a href="#" class="nav-btn" data-target="skills">Habilidades</a></li>
+        <li><a href="#" class="nav-btn" data-target="certifications">Certificações</a></li>
         <li><a href="#" class="nav-btn" data-target="process">Processo</a></li>
         <li><a href="#" class="nav-btn" data-target="projects">Projetos</a></li>
         <li><a href="#" class="nav-btn" data-target="testimonials">Depoimentos</a></li>
@@ -155,6 +165,58 @@
           <div class="skill-card"><i class="bi bi-git"></i><span>Git/GitHub</span></div>
           <div class="skill-card"><i class="bi bi-universal-access"></i><span>Acessibilidade</span></div>
           <div class="skill-card"><i class="bi bi-phone"></i><span>Responsividade</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="section">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Certificações</h2>
+
+        <div class="cert-grid">
+
+          <div class="cert-card" data-tilt>
+            <div class="cert-icon">
+              <i class="bi bi-patch-check-fill"></i>
+            </div>
+            <div class="cert-content">
+              <h3>Desenvolvimento Web Fullstack</h3>
+              <p class="cert-issuer">Udemy / Origamid</p>
+              <span class="cert-date">Concluído em 2024 • 60h</span>
+            </div>
+            <a href="#" target="_blank" class="cert-link" aria-label="Ver Certificado">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <div class="cert-card" data-tilt>
+            <div class="cert-icon">
+              <i class="bi bi-bar-chart-fill"></i>
+            </div>
+            <div class="cert-content">
+              <h3>Google Data Analytics</h3>
+              <p class="cert-issuer">Google / Coursera</p>
+              <span class="cert-date">Concluído em 2025</span>
+            </div>
+            <a href="#" target="_blank" class="cert-link" aria-label="Ver Certificado">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <div class="cert-card" data-tilt>
+            <div class="cert-icon">
+              <i class="bi bi-code-slash"></i>
+            </div>
+            <div class="cert-content">
+              <h3>JavaScript Avançado (ES6+)</h3>
+              <p class="cert-issuer">Alura</p>
+              <span class="cert-date">Concluído em 2024</span>
+            </div>
+            <a href="#" target="_blank" class="cert-link" aria-label="Ver Certificado">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -447,12 +509,17 @@
       <li><button data-target="home" class="dot active" aria-label="Ir para Início"></button></li>
       <li><button data-target="about" class="dot" aria-label="Ir para Sobre"></button></li>
       <li><button data-target="skills" class="dot" aria-label="Ir para Habilidades"></button></li>
+      <li><button data-target="certifications" class="dot" aria-label="Ir para Certificados"></button></li>
       <li><button data-target="process" class="dot" aria-label="Ir para Processo"></button></li>
       <li><button data-target="projects" class="dot" aria-label="Ir para Projetos"></button></li>
       <li><button data-target="testimonials" class="dot" aria-label="Ir para Depoimentos"></button></li>
       <li><button data-target="contact" class="dot" aria-label="Ir para Contato"></button></li>
     </ul>
   </nav>
+
+  <button id="back-to-top" aria-label="Voltar ao topo">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
   <script src="script.js"></script>
 </body>

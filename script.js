@@ -437,4 +437,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==================================================
+  // 🚀 EXTRAS: SCROLL PROGRESS & BACK TO TOP (CORRIGIDO)
+  // ==================================================
+
+  const scrollProgress = document.getElementById('scroll-progress');
+  const backToTopBtn = document.getElementById('back-to-top');
+
+  // Função que calcula o progresso
+  function updateScrollProgress(scrollTop, scrollHeight, clientHeight) {
+    // Cálculo da porcentagem
+    const totalScroll = scrollHeight - clientHeight;
+    const percentage = (scrollTop / totalScroll) * 100;
+
+    if (scrollProgress) {
+      scrollProgress.style.width = percentage + "%";
+    }
+
+    if (backToTopBtn) {
+      if (scrollTop > 30) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }
+  }
+
+  // 1. Escuta o Scroll da Janela (Desktop padrão)
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+
+    updateScrollProgress(scrollTop, scrollHeight, clientHeight);
+  });
+
+  // 2. Escuta o Scroll das Seções (Correção para Tablet/Mobile com overflow)
+  sections.forEach(section => {
+    section.addEventListener('scroll', (e) => {
+      const el = e.target;
+      updateScrollProgress(el.scrollTop, el.scrollHeight, el.clientHeight);
+    });
+  });
+
+  // 3. Clique do Botão Voltar ao Topo
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      // Tenta rolar a janela
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Tenta rolar todas as seções (para garantir)
+      sections.forEach(section => {
+        section.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  }
 });
