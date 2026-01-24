@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const navList = document.querySelector('.nav-links');
   const iconTheme = themeBtn.querySelector('i');
 
+  const modal = document.getElementById("cert-modal");
+  const modalImg = document.getElementById("modal-img");
+  const captionText = document.getElementById("modal-caption");
+  const closeBtn = document.getElementsByClassName("close-modal")[0];
+  const certCards = document.querySelectorAll('.cert-card');
+
   // --- 1. Navigation System (SPA Feel) ---
   function switchSection(targetId) {
     // Remover classe ativa de todas as seções e links
@@ -314,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Integration: Update Dots & Navigation
   // Array ordenado das suas seções para navegação sequencial
-  const sectionIds = ['home', 'about', 'skills', 'process', 'projects', 'testimonials', 'contact'];
+  const sectionIds = ['home', 'about', 'skills', 'certifications', 'process', 'projects', 'testimonials', 'contact'];
   const dots = document.querySelectorAll('.dot');
 
   // Função auxiliar para atualizar o visual dos dots
@@ -436,6 +442,117 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ==================================================
+  // 🔽 LOGICA VER MAIS / VER MENOS (CORRIGIDA)
+  // ==================================================
+
+  const loadMoreBtn = document.getElementById('load-more-btn');
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function () {
+      // Seleciona os cards ocultos OU os que foram mostrados
+      const hiddenCards = document.querySelectorAll('.cert-card.hidden');
+      const wasHiddenCards = document.querySelectorAll('.cert-card.was-hidden');
+
+      // Verifica o estado atual pelo botão
+      const isExpanding = !this.classList.contains('expanded');
+
+      if (isExpanding) {
+        // --- MODO: MOSTRAR TUDO (EXPANDIR) ---
+
+        hiddenCards.forEach(card => {
+          card.classList.remove('hidden');
+          card.classList.add('was-hidden'); // Marca para esconder depois
+
+          // Animação suave de entrada
+          card.style.animation = "fadeInScale 0.5s ease forwards";
+        });
+
+        // Atualiza o botão
+        this.innerHTML = 'Ver Menos <i class="bi bi-chevron-up"></i>';
+        this.classList.add('expanded');
+
+        // ⚠️ IMPORTANTE: Removemos qualquer scroll aqui. 
+        // Agora a tela fica parada e os cards aparecem embaixo.
+        // O usuário rola se quiser.
+
+      } else {
+        // --- MODO: ESCONDER (COLAPSAR) ---
+
+        wasHiddenCards.forEach(card => {
+          card.classList.add('hidden');
+          card.classList.remove('was-hidden');
+        });
+
+        // Atualiza o botão
+        this.innerHTML = 'Ver Mais Certificados <i class="bi bi-chevron-down"></i>';
+        this.classList.remove('expanded');
+
+        // --- CORREÇÃO DO TÍTULO CORTADO ---
+        // Em vez de scrollIntoView, calculamos a posição manual
+        const section = document.getElementById('certifications');
+
+        // 100px é a altura aproximada do seu Header + um respiro visual
+        const headerOffset = 100;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    });
+  }
+
+  // ==================================================
+  // 🎓 LOGICA DO MODAL DE CERTIFICADOS
+  // ==================================================
+
+  // Adiciona evento de clique em CADA card
+  certCards.forEach(card => {
+    card.addEventListener('click', function () {
+      const imgSource = this.getAttribute('data-src'); // Pega o link da imagem grande
+      const title = this.querySelector('h3').innerText; // Pega o título do card
+
+      modal.style.display = "flex"; // Abre o modal (flex para centralizar)
+      modal.style.flexDirection = "column";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+
+      modalImg.src = imgSource;
+      captionText.innerHTML = title;
+
+      // Trava o scroll do site atrás
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Função para fechar o modal
+  function closeModal() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto"; // Destrava o scroll
+  }
+
+  // Fecha ao clicar no X
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Fecha ao clicar fora da imagem (no fundo escuro)
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Fecha ao apertar ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && modal.style.display === "flex") {
+      closeModal();
+    }
+  });
 
   // ==================================================
   // 🚀 EXTRAS: SCROLL PROGRESS & BACK TO TOP (CORRIGIDO)

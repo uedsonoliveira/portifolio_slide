@@ -41,6 +41,61 @@ body {
   cursor: none;
 }
 
+/* =========================================================
+   SCROLLBAR GLOBAL (PADRONIZAÇÃO TOTAL)
+   Funciona em todo o site e em todas as seções
+   ========================================================= */
+
+/* 1. Para navegadores baseados em WebKit (Chrome, Edge, Safari, Opera) */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Largura da barra vertical */
+  height: 8px;
+  /* Altura da barra horizontal (se houver) */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  /* Fundo bem discreto */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  /* Cor do tema (Roxo/Verde/etc) */
+  border-radius: 10px;
+  /* Bordas bem redondas */
+  border: 2px solid transparent;
+  /* Truque para dar um "respiro" interno se quiser */
+  background-clip: content-box;
+  /* Faz a cor respeitar a borda transparente */
+}
+
+/* Estado Hover: Fica um pouco mais escuro/intenso quando passa o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text);
+  /* Ou uma variação mais escura da primary */
+}
+
+/* 2. Para Firefox (Usa o padrão novo da W3C) */
+html,
+body,
+* {
+  scrollbar-width: thin;
+  /* Barra fina */
+  scrollbar-color: var(--primary) rgba(0, 0, 0, 0.05);
+  /* Cor do Thumb | Cor da Track */
+}
+
+/* --- CORREÇÃO GLOBAL DE SCROLL (Para Header Fixo) --- */
+html {
+  scroll-behavior: smooth;
+}
+
+section,
+.section {
+  scroll-margin-top: 80px;
+}
+
 #scroll-progress {
   position: fixed;
   top: 0;
@@ -70,6 +125,32 @@ h4 {
   font-family: var(--font-heading);
 }
 
+/* =========================================
+   CUSTOM SELECTION (COR DE SELEÇÃO)
+   ========================================= */
+
+/* Padrão para Chrome, Safari, Edge */
+::selection {
+  background: var(--primary);
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* Padrão específico para Firefox */
+::-moz-selection {
+  background: var(--primary);
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/*Cor da seleção para elementos específicos */
+/* Ex: Na seção de contato, selecionar o input fica com outra cor */
+input::selection,
+textarea::selection {
+  background: rgba(var(--primary-rgb), 0.3);
+  color: var(--text);
+}
+
 /* --- Header --- */
 
 #main-header {
@@ -83,9 +164,25 @@ h4 {
   align-items: center;
   padding: 0 5%;
   z-index: 1000;
-  background: var(--header-bg);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+header,
+.navbar {
+  /* Deixe o fundo levemente transparente (ajuste a cor se seu menu for claro/escuro) */
+  background: rgba(15, 23, 42, 0.8);
+  /* Exemplo: Um tom escuro com 80% de opacidade */
+
+  /* O SEGREDO DO VIDRO: */
+  backdrop-filter: blur(12px);
+  /* Borra o que está atrás */
+  -webkit-backdrop-filter: blur(12px);
+  /* Para Safari */
+
+  /* Uma borda sutil embaixo para delimitar */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  /* Garante que fique acima de tudo */
+  z-index: 1000;
 }
 
 .logo {
@@ -362,6 +459,7 @@ main {
 .timeline-item {
   position: relative;
   margin-bottom: 2rem;
+  padding-left: 10px;
 }
 
 .timeline-item i {
@@ -385,25 +483,19 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 1.5rem;
   width: 100%;
-  text-align: left;
 }
 
 .skill-card {
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow);
-
   transition: box-shadow 0.3s, border-bottom 0.3s;
   transform-style: preserve-3d;
   position: relative;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-
-
   height: 100%;
   min-height: 160px;
   padding: 1.5rem;
@@ -436,49 +528,7 @@ main {
   border-bottom: 3px solid var(--accent);
 }
 
-/* --- Certifications Section --- */
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.cert-card {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border: 1px solid rgba(128, 128, 128, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Detalhe colorido na lateral esquerda */
-.cert-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: var(--primary);
-    transition: width 0.3s;
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.cert-card:hover::before {
-    width: 8px; /* Aumenta a barra lateral ao passar o mouse */
-}
-
+/*
 .cert-icon {
     font-size: 2rem;
     color: var(--primary);
@@ -492,40 +542,245 @@ main {
     flex-shrink: 0;
 }
 
+/* =========================================
+   CERTIFICAÇÕES (NEON & MODAL)
+   ========================================= */
+
+/* --- 1. Grid e Cards --- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.cert-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  /* Importante para a imagem não vazar */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* --- 2. Animação Neon Pulsante (Cyber) --- */
+/* --- CORREÇÃO: Animação Neon Pulsante (Ultra Brilho) --- */
+@keyframes neonPulse {
+  0% {
+    /* Brilho fraco inicial */
+    box-shadow: 0 0 5px var(--primary);
+    border-color: var(--primary);
+  }
+
+  50% {
+    /* PICO: Sombra dupla para efeito Neon forte */
+    /* A primeira sombra é o núcleo, a segunda é o brilho difuso */
+    box-shadow: 0 0 10px var(--primary), 0 0 30px var(--primary);
+    border-color: var(--primary);
+  }
+
+  100% {
+    /* Volta ao brilho fraco */
+    box-shadow: 0 0 5px var(--primary);
+    border-color: var(--primary);
+  }
+}
+
+.cert-card.neon-pulse {
+  /* Animation: nome | duração | suavização | repetição | direção */
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+/* Quando passar o mouse, o brilho fica fixo e forte */
+.cert-card:hover {
+  animation: none;
+  /* Pausa o pulsar */
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 40px var(--primary);
+  /* Brilho máximo fixo */
+  border-color: var(--primary);
+  z-index: 10;
+  /* Garante que fique acima dos outros */
+}
+
+/* --- 3. Thumbnail (Imagem no Card) --- */
+.cert-thumb-wrapper {
+  width: 100%;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Corta a imagem para caber sem distorcer */
+  transition: transform 0.5s ease;
+}
+
+/* Efeito de overlay ao passar o mouse */
+.cert-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cert-overlay i {
+  font-size: 2rem;
+  color: white;
+}
+
+.cert-card:hover .cert-overlay {
+  opacity: 1;
+}
+
+.cert-card:hover .cert-thumb {
+  transform: scale(1.1);
+}
+
 .cert-content {
-    flex-grow: 1;
+  padding: 1.5rem;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .cert-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem;
-    color: var(--text);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
 }
 
 .cert-issuer {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 0.2rem;
-    font-weight: 600;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
 }
 
 .cert-date {
-    font-size: 0.8rem;
-    color: var(--text-light);
-    opacity: 0.8;
+  font-size: 0.8rem;
+  color: var(--text-light);
 }
 
-.cert-link {
-    color: var(--text-light);
-    font-size: 1.2rem;
-    transition: color 0.3s;
-    padding: 10px;
+/* --- Funcionalidade Ver Mais / Ver Menos --- */
+
+/* Classe para esconder os cards extras */
+.cert-card.hidden {
+  display: none;
 }
 
-.cert-link:hover {
-    color: var(--primary);
-    transform: scale(1.1);
+/* Container do botão */
+.view-more-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
+
+/* Ajuste no botão para indicar ação */
+#load-more-btn i {
+  transition: transform 0.3s ease;
+}
+
+/* Gira a setinha quando estiver aberto (opcional, faremos via JS também) */
+#load-more-btn.expanded i {
+  transform: rotate(180deg);
+}
+
+/* --- 4. O MODAL (Janela Fullscreen) --- */
+.modal {
+  display: none;
+  /* Escondido por padrão */
+  position: fixed;
+  z-index: 2000;
+  /* Acima de tudo */
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Fundo escuro */
+  backdrop-filter: blur(5px);
+  /* Efeito Blur no fundo */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 900px;
+  /* Limite no PC */
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  animation: zoomIn 0.3s;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+#modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: var(--primary);
+}
+
+/* Responsivo do Modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+  }
+
+  .close-modal {
+    top: 10px;
+    right: 20px;
+  }
+}
+
+
 
 /* --- 4 Secao Processos --- */
 .process-wrapper {
@@ -1431,9 +1686,7 @@ textarea:-webkit-autofill:focus {
            RESPONSIVIDADE (MOBILE)
 ========================================= */
 
-/* =========================================
-RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 992px)
-========================================= */
+/* media < 992 px */
 @media (max-width: 992px) {
 
   /* --- GERAL --- */
@@ -1634,7 +1887,54 @@ RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 992px)
   }
 }
 
+/* media > 993 px */
 @media (min-width: 993px) {
+
+  /* 1. Resolve o problema do conteúdo "subir/sumir" ao expandir */
+  #certifications.section {
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    justify-content: flex-start !important;
+    display: block !important;
+    padding-top: 100px !important;
+    padding-bottom: 50px !important;
+  }
+
+  #certifications .container {
+    justify-content: flex-start !important;
+    height: auto !important;
+  }
+
+  #projects.section {
+    /* Trava a altura na tela e força rolagem interna */
+    height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    /* Garante alinhamento no topo para não cortar título */
+    display: block !important;
+    padding-top: 100px !important;
+    /* Espaço para o Header */
+    padding-bottom: 20px !important;
+  }
+
+  /* O container agora deve ser livre para crescer dentro da seção */
+  #projects .container {
+    height: auto !important;
+    min-height: 100%;
+    max-height: none !important;
+    /* Remove travas antigas se houver */
+    overflow: visible !important;
+    /* Remove barra antiga do container */
+    padding-top: 0 !important;
+    display: block !important;
+  }
+
+  /* Garante que o Grid tenha espaço no final para não cortar o último card */
+  .projects-grid {
+    padding-bottom: 80px !important;
+  }
 
   /* Força a seção de contato a centralizar o conteúdo no meio da tela */
   #contact.section {
@@ -1654,9 +1954,9 @@ RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 992px)
   }
 }
 
-/* =========================================
-RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 768px)
-========================================= */
+/* ================================
+            media < 768 
+  ================================= */
 
 @media (max-width: 768px) {
 
@@ -1794,6 +2094,27 @@ RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 768px)
     margin-top: 2rem;
   }
 
+  /* CERTIFICAÇÕES */
+  #certifications .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #certifications .cert-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  #certifications .cert-card {
+    width: 100% !important;
+    max-width: 500px;
+    margin: 0 auto;
+    flex: 1 1 100% !important;
+  }
+
   /* --- PROCESSO --- */
   .process-step {
     flex-direction: column;
@@ -1825,7 +2146,6 @@ RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 768px)
   .filter-container {
     flex-wrap: wrap;
     justify-content: center;
-    overflow: visible;
     width: 100%;
     margin-left: 0;
     padding: 0 10px 20px 10px;
@@ -1884,40 +2204,6 @@ RESPONSIVIDADE *A PARTIR DE* (MOBILE) @media (min-width: 769px)
 
 }
 
-/* Responsividade Mobile para Certificações */
-@media (max-width: 380px) {
-    .cert-grid{
-      padding-bottom: 50px;
-    }
-    .cert-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem 1rem;
-    }
-    
-    .cert-card::before {
-        width: 100%;
-        height: 4px; /* Barra vai para o topo no mobile */
-        left: 0;
-        top: 0;
-    }
-    
-    .cert-card:hover::before {
-        width: 100%;
-        height: 8px;
-    }
-
-    .cert-link {
-        margin-top: 1rem;
-        background: rgba(var(--primary-rgb), 0.1);
-        width: 100%;
-        border-radius: 6px;
-    }
-}
-
-/* =========================================
-RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 380px)
-========================================= */
 
 @media (max-width: 380px) {
   .hero-content h1 {
@@ -1927,6 +2213,71 @@ RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 380px)
   .btn-primary {
     padding: 10px 20px;
     font-size: 0.9rem;
+  }
+
+  #certifications .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  #certifications .cert-card {
+    border-radius: 8px;
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .cert-grid {
+    padding-bottom: 50px;
+  }
+
+  .cert-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  /* Reduz o tamanho da imagem de capa */
+  .cert-thumb-wrapper {
+    height: 130px !important;
+  }
+
+  /* Compacta o conteúdo interno */
+  .cert-content {
+    padding: 1rem !important;
+    /* Menos espaçamento interno */
+  }
+
+  .cert-content h3 {
+    font-size: 1rem !important;
+    /* Fonte menor no título */
+    line-height: 1.2;
+  }
+
+  .cert-issuer,
+  .cert-date {
+    font-size: 0.75rem !important;
+    /* Fonte menor nos detalhes */
+  }
+
+  .cert-card::before {
+    width: 100%;
+    height: 4px;
+    /* Barra vai para o topo no mobile */
+    left: 0;
+    top: 0;
+  }
+
+  .cert-card:hover::before {
+    width: 100%;
+    height: 8px;
+  }
+
+  .cert-link {
+    margin-top: 1rem;
+    background: rgba(var(--primary-rgb), 0.1);
+    width: 100%;
+    border-radius: 6px;
   }
 }
 
@@ -1985,6 +2336,26 @@ RESPONSIVIDADE *ATÉ* (MOBILE) @media (max-width: 380px)
   #skills .skills-grid>div,
   .skill-card {
     flex: 1 1 220px !important;
+    max-width: 100%;
+  }
+
+  /* --- CORREÇÃO CERTIFICADOS --- */
+  #certifications .cert-grid {
+    display: flex !important;
+    /* Muda de Grid para Flex */
+    flex-wrap: wrap !important;
+    /* Permite quebrar linha */
+    gap: 1.5rem !important;
+    justify-content: center;
+  }
+
+  /* Faz o card crescer para ocupar espaços vazios */
+  #certifications .cert-card {
+    /* flex-grow: 1 (Estica), flex-shrink: 1 (Encolhe), flex-basis: 45% (Tenta ocupar metade da tela) */
+    flex: 1 1 45% !important;
+
+    /* Garante que não fique pequeno demais nem gigante demais */
+    min-width: 280px;
     max-width: 100%;
   }
 
